@@ -85,6 +85,13 @@ public class Test {
 				.forEach(System.out::println);
 		System.out.println("-------------------------------------------------------");
 		
+		System.out.println("Employees who has 'c' in there name");
+		emps.stream()
+			.filter(e -> e.getEname().contains("c"))
+			.collect(Collectors.toList())
+			.forEach(System.out::println);
+		System.out.println("--------------------------------------------------------");
+		
 		System.out.println(service.registerEmployee(1012, "nitin", "developer", 37000));
 		
 		((AbstractApplicationContext) ctx).close();
