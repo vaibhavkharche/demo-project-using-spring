@@ -85,7 +85,7 @@ public class Test {
 				.forEach(System.out::println);
 		System.out.println("-------------------------------------------------------");
 		
-//		System.out.println(service.registerEmployee(1012, "nitin", "developer", 37000));
+		System.out.println(service.registerEmployee(1012, "nitin", "developer", 37000));
 		
 		((AbstractApplicationContext) ctx).close();
 
