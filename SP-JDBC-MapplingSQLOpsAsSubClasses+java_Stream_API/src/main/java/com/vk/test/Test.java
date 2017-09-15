@@ -74,10 +74,10 @@ public class Test {
 		service.getEmpsByDesg("developer").forEach(System.out::println);
 		System.out.println("-------------------------------------------------------");
 		
-		System.out.println("1005 Employee's salary: " + service.getEmpSalaryByNo(1005));
+		System.out.println("1005 Employee's salary: " + service.getEmpSalaryByNo(1));
 		System.out.println("-------------------------------------------------------");
 		
-//		System.out.println(service.updateSalByPercent(1005, 20));
+		System.out.println(service.updateSalByPercent(1, 30));
 		System.out.println("-------------------------------------------------------");
 		
 		System.out.println("Employees By Salary Range..");
@@ -85,7 +85,7 @@ public class Test {
 				.forEach(System.out::println);
 		System.out.println("-------------------------------------------------------");
 		
-		System.out.println(service.registerEmployee(1012, "nitin", "developer", 37000));
+		System.out.println(service.registerEmployee(3, "ankush", "developer", 29000));
 		
 		((AbstractApplicationContext) ctx).close();
 
