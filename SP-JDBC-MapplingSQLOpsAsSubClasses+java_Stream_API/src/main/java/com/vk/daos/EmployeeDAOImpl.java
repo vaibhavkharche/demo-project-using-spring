@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.sql.DataSource;
 
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
@@ -23,6 +24,8 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.object.MappingSqlQuery;
 import org.springframework.jdbc.object.SqlQuery;
 import org.springframework.jdbc.object.SqlUpdate;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.vk.bos.EmployeeBO;
 
@@ -54,6 +57,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	
 	//	returns all Employees
 	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true, noRollbackFor = { SQLException.class, DuplicateKeyException.class})
 	public List<EmployeeBO> getAllEmployees() {
 		return aes.execute();		//.getAllEmps();
 	}
