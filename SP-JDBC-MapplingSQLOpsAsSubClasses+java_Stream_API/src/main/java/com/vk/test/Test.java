@@ -47,12 +47,20 @@ public class Test {
 		System.out.println("Job wise total Salary:\n" + jobWiseSal);
 		System.out.println("-------------------------------------------------------");
 		
-		System.out.println("Employees \"Name-->Salary\" Partitioned By Salary: 25000");
+		System.out.println("Employees \"Name-->Salary\" Partitioned By Salary: 30000");
 		Map<Boolean, List<String>> hiLowSal = 
 				emps.stream()
-				.collect(Collectors.partitioningBy(e -> e.getSalary() >= 25000,
+				.collect(Collectors.partitioningBy(e -> e.getSalary() >= 30000,
 						Collectors.mapping((e -> e.getEname()+ "-->" + e.getSalary()), Collectors.toList() )) );
 		hiLowSal.entrySet().forEach(System.out::println);
+		System.out.println("-------------------------------------------------------");
+		
+		System.out.println("Employees partitioned by there name's 1st char less than k or not");
+		Map<Boolean, List<String> > empsByChars =
+				emps.stream()
+					.collect(Collectors.partitioningBy(e -> Character.toLowerCase(e.getEname().charAt(0)) - 'k' >= 0,
+							Collectors.mapping(EmployeeDTO::getEname, Collectors.toList()) ));
+		empsByChars.entrySet().forEach(System.out::println);
 		System.out.println("-------------------------------------------------------");
 		
 		String joinedEnames = 
@@ -77,15 +85,15 @@ public class Test {
 		System.out.println("1005 Employee's salary: " + service.getEmpSalaryByNo(1));
 		System.out.println("-------------------------------------------------------");
 		
-		System.out.println(service.updateSalByPercent(1, 30));
+		System.out.println(service.updateSalByPercent(1, 10));
 		System.out.println("-------------------------------------------------------");
 		
-		System.out.println("Employees By Salary Range..");
-		service.getEmpsBySalRange(10000, 20000)
+		System.out.println("Employees By Salary Range 40000-60000");
+		service.getEmpsBySalRange(40000, 60000)
 				.forEach(System.out::println);
 		System.out.println("-------------------------------------------------------");
 		
-		System.out.println(service.registerEmployee(3, "ankush", "developer", 29000));
+//		System.out.println(service.registerEmployee(103, "haresh", "developer", 80000));
 		
 		((AbstractApplicationContext) ctx).close();
 

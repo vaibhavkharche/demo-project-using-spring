@@ -24,6 +24,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.object.MappingSqlQuery;
 import org.springframework.jdbc.object.SqlQuery;
 import org.springframework.jdbc.object.SqlUpdate;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -70,6 +71,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	
 	// updates Employee salary by percentage
 	@Override
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public double updateSalByPercent(int eno, int perc) {
 		return esu.updateSalary(eno, perc);
 	}
