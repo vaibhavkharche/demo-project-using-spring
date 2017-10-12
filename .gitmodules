@@ -1,3 +1,0 @@
-[submodule "REST_AUTH"]
-	path = REST_AUTH
-	url = git://github.com/vaibhavkharche/REST_AUTH
